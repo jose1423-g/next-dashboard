@@ -30,6 +30,7 @@ export default async function Page() {
           value={numberOfCustomers}
           type="customers"
         /> */}
+        {/* muestra un esqueleto de precarga */}
          <Suspense fallback={<CardsSkeleton />}>
           <CardWrapper />
         </Suspense>

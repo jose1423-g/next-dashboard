@@ -1,4 +1,5 @@
-'use client';
+/* muestra al usario un mensaje de error en caso de que haya un error */
+'use client'; // permite al usario usar funciones del servidor
 /* muestra todos los errores y esta ligado solo a una ruta */
 import { useEffect } from 'react';
  

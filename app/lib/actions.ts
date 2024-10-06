@@ -1,10 +1,12 @@
 /* se utiliza para los componentes del servidor y tambien se pueden usar en los componentes de clientes se puede usar al mismo tiempo con use client */
+/* se utiliza para insertar o actualizar los datos en la base de datos */
 'use server';
 import { z } from 'zod'; // valida y tranforma los tipos de datos que requiere la base de datos
 import { sql } from '@vercel/postgres'; // importamos la conexion a la base de datos
 import { revalidatePath } from 'next/cache'; // permite purgar datos almacenados en caché a pedido para una ruta específica.
 import { redirect } from 'next/navigation'; // redirecciona al usuario a la pagina que se asigne 
 
+/* valida y transforma los tipos de datos para ingresarlos a la base de datos */
 const FormSchema = z.object({
   id: z.string(),
   customerId: z.string(),
@@ -17,9 +19,9 @@ const CreateInvoice = FormSchema.omit({ id: true, date: true });
 
 export async function createInvoice(formData: FormData) {
     const { customerId, amount, status } = CreateInvoice.parse({
-        customerId: formData.get('customerId'),
-        amount: formData.get('amount'),
-        status: formData.get('status'),
+      customerId: formData.get('customerId'),
+      amount: formData.get('amount'),
+      status: formData.get('status'),
     });
     const amountInCents = amount * 100;
     const date = new Date().toISOString().split('T')[0];
@@ -33,8 +35,8 @@ export async function createInvoice(formData: FormData) {
             message: 'Database Error: Failed to Create Invoice.',
         };
     }    
-    revalidatePath('/dashboard/invoices');
-    redirect('/dashboard/invoices');
+    revalidatePath('/dashboard/invoices'); // limpia la cache del usario
+    redirect('/dashboard/invoices'); // te retorna a la ruta ingresada dentro de la funcion
 }
 
 const UpdateInvoice = FormSchema.omit({ id: true, date: true });

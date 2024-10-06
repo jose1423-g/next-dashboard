@@ -19,6 +19,7 @@ export default async function Page({
     const query = searchParams?.query || '';
     const currentPage = Number(searchParams?.page) || 1;
 
+    /* obtiene el total de paginas que mostrara en la tabla*/
     const totalPages = await fetchInvoicesPages(query);
 
   return (
@@ -30,6 +31,7 @@ export default async function Page({
         <Search placeholder="Search invoices..." />
         <CreateInvoice />
       </div>
+      {/* muestra el esqueleto de la tabla en lo que se obtienen los datos */}
        <Suspense key={query + currentPage} fallback={<InvoicesTableSkeleton />}>
         <Table query={query} currentPage={currentPage} />
       </Suspense>

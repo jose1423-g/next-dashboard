@@ -1,3 +1,4 @@
+/* pagina not found muestra un error 404 si el suario no existe tien prioridad sobre los archivos error.tsx */
 import Link from 'next/link';
 import { FaceFrownIcon } from '@heroicons/react/24/outline';
  
