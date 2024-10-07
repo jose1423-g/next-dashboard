@@ -1,8 +1,12 @@
-import { Card } from '@/app/ui/dashboard/cards';
+/* la carpeta ( overview ) se utiliza o le indica que el archivo que debe de cargar la pagina al inicio es la que contiene dentro 
+  y el archivo loading se hereada y se muestra un mesaje de cargando en lo que se obtienen los datos.
+  el archivo loading se reemplazo por el compoenente Suspense de react para mostrar los esqueletos de carga
+*/
+import { Card } from '@/app/ui/dashboard/cards'; // no se utiliza en su lugar se ocupa CardWrapper
 import RevenueChart from '@/app/ui/dashboard/revenue-chart';
 import LatestInvoices from '@/app/ui/dashboard/latest-invoices';
 import { lusitana } from '@/app/ui/fonts';
-import {fetchRevenue, fetchLatestInvoices, fetchCardData } from '@/app/lib/data'; // se ocupa para llamar  a la funcion del archivo data
+import {fetchRevenue, fetchLatestInvoices, fetchCardData } from '@/app/lib/data'; // se ocupa para llamar a la funcion del archivo data
 import CardWrapper from '@/app/ui/dashboard/cards';
 import { Suspense } from 'react';
 import { RevenueChartSkeleton, LatestInvoicesSkeleton, CardsSkeleton } from '@/app/ui/skeletons';
